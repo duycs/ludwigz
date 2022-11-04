@@ -1,0 +1,60 @@
+extends layout
+
+block content
+  nav.navbar.fixed-top.navbar-light
+    .container
+      form.search
+        .input-group
+          .input-group-prepend
+            button.btn.glass.btn-outline-secondary
+              #spinner.spinner.spinner-border.spinner-border-sm(role='status')
+              img.search#search(src='/img/search.png', srcset='/img/search@2x.png 2x')
+            span#inputGroup-sizing-sm.input-group-text.language EN
+          input.query.form-control.form-control-lg(type='text', placeholder='Search here...', autofocus)
+          .input-group-append
+            button.btn.close.btn-outline-secondary(type='reset', aria-label='Close')
+              span(aria-hidden='true') ×
+
+  .content.results
+    .container.card-statistic#Results
+     .cards
+        .card.template
+          .card-body
+            .text Results 
+              .status.exact.background-green {exact-count} 
+              | exact 
+              .status.related.background-yellow  {similar-count} 
+              | similar 
+              .status.related.background-pink  {related-count} 
+              | related 
+
+    .container.card-dictionary#Dictionary
+      .cards
+        .card.template
+          .card-body
+            //.title Translate from 
+              strong {language}
+            .line
+            .text English translation of 
+              strong {query} 
+              | in context is 
+              strong {translation}
+    .container.card-related#Related
+      .cards
+        .card.template
+          .card-body
+            .title.pink RELATED 
+            .text {related}
+            .sub
+              .see-more.hover see more...
+    .container.card-snippet#Snippet
+      .cards
+        .card.template
+          .card-body
+            .main
+              .number
+                | {number}
+              .text {content}
+            .sub
+              a(target='blank', href='{domain}')
+                | {paper}
